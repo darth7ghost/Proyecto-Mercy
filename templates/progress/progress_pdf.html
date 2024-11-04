@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+.default-block{
+    margin-top: 30px;
+	border-radius: 20px;
+	background-color: var(--light);
+}
+.content main .table-data .head {
+		min-width: 420px;
+	}
+	.content main .table-data .order table {
+		min-width: 420px;
+	}
+	.content main .table-data .todo .todo-list {
+		min-width: 420px;
+	}
+    .content main .table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 100%;
+	color: var(--dark);
+}
+.content main .table-data > div {
+	border-radius: 20px;
+	background: var(--light);
+	padding: 24px;
+	overflow-x: auto;
+}
+.content main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+.content main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
+.content main .table-data .head .bx {
+	cursor: pointer;
+}
+
+.content main .table-data .order {
+	flex-grow: 1;
+	flex-basis: 500px;
+}
+.content main .table-data .order table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.content main .table-data .order table th {
+	padding-bottom: 12px;
+	font-size: 13px;
+	text-align: left;
+	border-bottom: 1px solid var(--grey);
+}
+.content main .table-data .order table td {
+	padding: 16px 0;
+}
+.content main .table-data .order table tr td:first-child {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	grid-gap: 12px;
+	padding-left: 6px;
+}
+.content main .table-data .order table td img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.content main .table-data .order table tbody {
+	font-size: 14px;
+}
+.content main .table-data .order table tbody tr:hover {
+	background: var(--grey);
+}
+.content main .table-data .order table tr td .status {
+	font-size: 10px;
+	padding: 6px 10px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 700;
+}
+.content main .table-data .order table tr td .status.completed {
+	background: var(--completed);
+}
+.content main .table-data .order table tr td .status.process {
+	background: var(--yellow);
+}
+.content main .table-data .order table tr td .status.pending {
+	background: var(--orange);
+}
+.content main .table-data .order table tr td .status.delete {
+	background: var(--red);
+}
+
+
+.content main .table-data .todo {
+	flex-grow: 1;
+	flex-basis: 300px;
+}
+.content main .table-data .todo .todo-list {
+	width: 100%;
+}
+.content main .table-data .todo .todo-list li {
+	width: 100%;
+	margin-bottom: 16px;
+	background: var(--grey);
+	border-radius: 10px;
+	padding: 14px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.content main .table-data .todo .todo-list li .bx {
+	cursor: pointer;
+}
+.content main .table-data .todo .todo-list li.completed {
+	border-left: 10px solid var(--blue);
+}
+.content main .table-data .todo .todo-list li.not-completed {
+	border-left: 10px solid var(--orange);
+}
+.content main .table-data .todo .todo-list li:last-child {
+	margin-bottom: 0;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="default-block">
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>{{ progreso.representante.nombre }} - ({{ progreso.fecha_registro }})</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h2>Elemento</h2>
+                            </th>
+                            <th>
+                                <h2>Porcentaje</h2>
+                            </th>
+                            <th>
+                                <h2>Urgencia</h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4>&#129529; Lo que haremos para tener nuestra casa más limpia, ordenada y bonita.</h4>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tiene algún tipo de estufa mejorada o bien planifican construirla a corto, mediano o
+                                largo
+                                plazo.</td>
+                            <td>{{ progreso.estufa_mejorada }}%</td>
+                            <td>{% if progreso.estufa_mejorada == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.estufa_mejorada == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tiene servicio de agua doméstica y planifica o desea tenerlo con el tiempo.</td>
+                            <td>{{ progreso.agua_potable }}%</td>
+                            <td>{% if progreso.agua_potable == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.agua_potable == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TIene divisiones que separen el lugar de cocinar y comer de los lugares para dormir.
+                            </td>
+                            <td>{{ progreso.divisiones }}%</td>
+                            <td>{% if progreso.divisiones == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.divisiones == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Tiene piso o si planifica tenerlo con urgencia, a mediano o largo plazo.</td>
+                            <td>{{ progreso.piso }}%</td>
+                            <td>{% if progreso.piso == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.piso == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Hace la limpieza de la casa y cocina, con una frecuencia aceptable o se planifica
+                                hacerlo de
+                                ahora en adelante.</td>
+                            <td>{{ progreso.limpieza }}%</td>
+                            <td>{% if progreso.limpieza == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.limpieza == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Mantiene ordenada su ropa utilizando algún tipo de mueble o estructura sencilla,
+                                fabricado
+                                con
+                                varas, tablas o ambas.</td>
+                            <td>{{ progreso.muebles }}%</td>
+                            <td>{% if progreso.muebles == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.muebles == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Protege sus alimentos y agua, tapándolos y evitando la contaminación.</td>
+                            <td>{{ progreso.comida_protegida }}%</td>
+                            <td>{% if progreso.comida_protegida == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.comida_protegida == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>&#127793; Haciendo más productivo nuestro patio</h4>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cuentan ya con un sistema de trojas y silos para proteger los productos de la cosecha de
+                                animales.</td>
+                            <td>{{ progreso.plagas }}%</td>
+                            <td>{% if progreso.plagas == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.plagas == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Plan de ahorro para inversión en tiempos difíciles.</td>
+                            <td>{{ progreso.ahorro }}%</td>
+                            <td>{% if progreso.ahorro == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.ahorro == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Contempla todo lo relacionado a planificar actividades de piscicultura su propio patio.
+                            </td>
+                            <td>{{ progreso.piscicultura }}%</td>
+                            <td>{% if progreso.piscicultura == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.piscicultura == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Planifica cultivar tubérculos y plantas comestibles que contengan niveles importantes de
+                                proteína</td>
+                            <td>{{ progreso.tuberculos }}%</td>
+                            <td>{% if progreso.tuberculos == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.tuberculos == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Planifica aumentar el número de árboles frutales, para su consumo o venta.</td>
+                            <td>{{ progreso.arboles_frutales }}%</td>
+                            <td>{% if progreso.arboles_frutales == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.arboles_frutales == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Posee uno o varios cercos vivos.</td>
+                            <td>{{ progreso.cerco_vivo }}%</td>
+                            <td>{% if progreso.cerco_vivo == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.cerco_vivo == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>&#128106; ¿Qué hacemos para mantener nuestra familia sana y contenta?</h4>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tiene distintos botes para basura orgánica, plásticos y vidrio para reciclaje y la
+                                protección
+                                del medio ambiente.</td>
+                            <td>{{ progreso.reciclaje }}%</td>
+                            <td>{% if progreso.reciclaje == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.reciclaje == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Realizan un baño diario cada uno de los miembros de familia.</td>
+                            <td>{{ progreso.banio_diario }}%</td>
+                            <td>{% if progreso.banio_diario == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.banio_diario == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Se lavan las manos hasta los codos con agua y jabón.</td>
+                            <td>{{ progreso.lavar_manos }}%</td>
+                            <td>{% if progreso.lavar_manos == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.lavar_manos == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Tiene o desea construir una letrina, para manejar sus desechos sólidos, y hace buen uso
+                                de
+                                la
+                                misma.</td>
+                            <td>{{ progreso.letrina }}%</td>
+                            <td>{% if progreso.letrina == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.letrina == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Tiene un sumidero hacia donde drenen los líquidos de lavado de trastos y ropa, o si
+                                planifica
+                                hacerlo.</td>
+                            <td>{{ progreso.sumidero }}%</td>
+                            <td>{% if progreso.sumidero == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.sumidero == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Los menores de la familia asisten a la escuela, o se promoverá que asistan en caso de
+                                que no
+                                lo
+                                hagan</td>
+                            <td>{{ progreso.escuela }}%</td>
+                            <td>{% if progreso.escuela == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.escuela == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Asisten a las capacitaciones que se dan dentro y fuera de la comunidad.</td>
+                            <td>{{ progreso.capacitaciones }}%</td>
+                            <td>{% if progreso.capacitaciones == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.capacitaciones == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Los niños están siguiendo un plan de vacunación que les permita prevenir enfermedades.
+                            </td>
+                            <td>{{ progreso.vacunacion }}%</td>
+                            <td>{% if progreso.vacunacion == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.vacunacion == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Lleva un monitoreo del peso y la salud de los recién nacidos y niños en crecimiento.
+                            </td>
+                            <td>{{ progreso.peso }}%</td>
+                            <td>{% if progreso.peso == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.peso == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Las señoras embarazadas asisten a los chequeos pre y postnatales.</td>
+                            <td>{{ progreso.chequeo_embarazo }}%</td>
+                            <td>{% if progreso.chequeo_embarazo == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.chequeo_embarazo == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>La familia con señoras embarazadas tiene un plan de emergencia para el momento de
+                                alumbramiento.
+                            </td>
+                            <td>{{ progreso.emergencia_embarazo }}%</td>
+                            <td>{% if progreso.emergencia_embarazo == 100 %}
+                                Realizado con éxito
+                                {% elif progreso.emergencia_embarazo == 50 %}
+                                En proceso
+                                {% else %}
+                                Urgente
+                                {% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

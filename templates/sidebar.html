@@ -1,0 +1,47 @@
+{% load static %}
+<!-- SIDEBAR -->
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">Admin</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="active">
+            <a href="{% url 'inicio' %}">
+                <span class="text">&nbsp;&nbsp; &#127968; &nbsp; Inicio</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'housing:communities' %}">
+                <span class="text">&nbsp;&nbsp; &#129517; &nbsp; Comunidades</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'housing:families' %}">
+                <span class="text">&nbsp;&nbsp; &#128101; &nbsp; Familias</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'housing:progress' %}">
+                <span class="text">&nbsp;&nbsp; &#128202; &nbsp; Progresos</span>
+            </a>
+        </li>
+        <br>
+        <li>
+            <a href="{% url 'about' %}">
+                <span class="text">&nbsp;&nbsp; &#128205; &nbsp; Acerca de...</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <form method="post" action="{% url 'logout' %}" class="logout">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">&#9940; Cerrar sesión</button>
+            </form>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+{% block javascript %}
+{% endblock %}

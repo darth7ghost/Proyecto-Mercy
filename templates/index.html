@@ -1,0 +1,64 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Inicio</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="{% url 'inicio' %}">Inicio</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="default-block">
+    <div class="main-content">
+        <h1>Plan de manejo de vivienda y patio</h1>
+        <br>
+        <p>Nuestra nueva aplicación de seguimiento de viviendas es una herramienta poderosa diseñada específicamente para optimizar y gestionar el progreso de lotificación y desarrollo de viviendas en diversas comunidades.</p>
+        <br>
+        <p>Esta plataforma intuitiva permite monitorizar en tiempo real el avance de las familias. Con ella, podemos identificar de manera efectiva qué comunidades están aprovechando mejor los recursos y tomar decisiones informadas para maximizar el impacto del proyecto.</p>   
+        </div>
+</div>
+
+<br><br>
+
+<div class="buttonpdf">
+    <a href="{% url 'housing:export_progress_to_excel' %}" class="btn-download">
+        <i class='bx bxs-cloud-download' ></i>
+        <span class="text">Descargar Excel</span>
+    </a>
+</div>
+
+<ul class="box-info">
+    <li>
+        <i class='bx bxs-calendar-check' ></i>
+        <span class="text">
+            <h3>5</h3>
+            <p>Años de proyección</p>
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-group' ></i>
+        <span class="text">
+            <h3>+180</h3>
+            <p>Familias</p>
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-dollar-circle' ></i>
+        <span class="text">
+            <h3>7</h3>
+            <p>Comunidades</p>
+        </span>
+    </li>
+</ul>
+
+
+
+{% endblock %}

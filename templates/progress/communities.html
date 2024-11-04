@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Progresos por comunidad</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progress' %}">Comunidades</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Selecciona la comunidad para agregar un progreso:</h3>              
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Comunidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comunidad in comunidades %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url 'housing:comunidad_detail' comunidad.pk %}">{{ comunidad.nombre }}</a></td>
+                        <td class="item-actions">
+                            <a href="{% url 'housing:comunidad_detail' comunidad.pk %}"><button class="status completed">Ver progreso &#128200;</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

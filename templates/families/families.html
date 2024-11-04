@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Listado de familias</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:families' %}">Familias</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="default-content-block">
+        <h2>Acciones con familias</h2>
+        <a href="{% url 'housing:create_families' %}" class="btn-new">
+            <span class="text">&#128221; Nueva familia</span>
+        </a>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Familias</h3>              
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Familia</th>
+                        <th>Comunidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for familia in familias %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ familia.nombre }}</td>
+                        <td>{{ familia.comunidad }}</td>
+                        <td class="item-actions">
+                            <a href="{% url 'housing:edit_families' pk=familia.pk %}"><button class="status process">&#128221;</button></a>
+                            <a href="{% url 'housing:delete_family' pk=familia.pk %}"><button class="status delete">&#9940;</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

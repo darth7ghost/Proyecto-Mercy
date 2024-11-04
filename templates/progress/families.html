@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Progresos por familia</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progress' %}">Comunidades</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:families' %}">Representantes de familia</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Representantes de la comunidad: {{ comunidad.nombre }}</h3>              
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Representante</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for familia in familias %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url 'housing:progreso_vivienda' community_pk=comunidad.pk representante_id=familia.id %}">{{ familia.nombre }}</a></td>
+                        <td class="item-actions">
+                            <a href="{% url 'housing:progreso_vivienda' community_pk=comunidad.pk representante_id=familia.id %}"><button class="status completed">Ver progreso &#128200;</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

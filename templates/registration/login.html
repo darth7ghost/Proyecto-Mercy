@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="login-section">
+            <div class="login-container">
+                <h2>Login</h2>
+                <br>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <button type="submit">Iniciar sesión</button>
+                </form>
+                {% if form.errors %}
+                    <p>Tu usuario y/o contraseña no son correctas. Por favor, intenta de nuevo.</p>
+                {% endif %}
+            </div> 
+</section>
+
+{% endblock %}
+
+<!-- Block javascript -->
+{% block javascript %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Crear nueva familia</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:families' %}">Familias</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:create_families' %}">Crear nueva familia</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <h1>Ingrese la información del representante de la familia:</h1>
+
+            <!-- PONER EL FORM AQUI DENTRO PLOXITO  -->
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="default-block">
+                    <div class="modify-block">
+                        <button type="submit" class="btn-save">&#128190; Guardar</button>
+                        <a href="{% url 'housing:families' %}" class="btn-edit">
+                            <span class="text">&#9940; Cancelar</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- Block javascript -->
+{% block javascript %}
+{% endblock %}

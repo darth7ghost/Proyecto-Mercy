@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'img/casa.png' %}" type="image/png"/>
+    <title>{{ title }}</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+    <!-- Block javascript -->
+    {% block javascript %}
+    <script>
+        (function() {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                document.body.classList.add(currentTheme);
+            }
+        })();
+    </script>
+    {% endblock %}
+    
+    <!-- Block head -->
+    {% block head %}
+
+    {% endblock %}
+</head>
+{% block body %}
+<!-- Sidebar -->
+{% include 'sidebar.html' %}
+<!-- MAIN -->
+<section class="content">
+<!-- Header -->
+{% include 'header.html' %}
+<main>
+    {% block content %}
+
+    {% endblock %}
+</main>
+<!-- MAIN -->
+<!-- Footer -->
+{% include 'footer.html' %}
+</section>
+
+{% endblock %}
+
+<!-- Functions -->
+<script src="{% static 'js/functions.js' %}" crossorigin="anonymous"></script>
+</html>

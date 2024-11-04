@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Crear nuevo progreso</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progress' %}">Comunidades</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:comunidad_detail' pk=community_pk %}">Representantes de familia</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progreso_vivienda' community_pk=community_pk representante_id=representante_id %}">Progresos</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:agregar_progreso' community_pk=community_pk representante_id=representante_id %}">Crear nuevo progreso</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <h1>Agregar progreso para {{ familia.nombre }} en la comunidad {{ comunidad.nombre }}</h1>
+
+            <!-- PONER EL FORM AQUI DENTRO PLOXITO  -->
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="default-block">
+                    <div class="modify-block">
+                        <button type="submit" class="btn-save">&#128190; Guardar</button>
+                        <a href="{% url 'housing:progreso_vivienda' community_pk=comunidad.pk representante_id=familia.id %}" class="btn-edit">
+                            <span class="text">&#9940; Cancelar</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- Block javascript -->
+{% block javascript %}
+{% endblock %}

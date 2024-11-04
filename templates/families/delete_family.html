@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Eliminar familia</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:families' %}">Familias</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="" href="#">Eliminar familia</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <h1>¿Está seguro de que desea eliminar la familia {{ familia.nombre }}?</h1>
+            <br>
+            <strong>ADVERTENCIA:</strong>
+            <p>Esta acción no se puede deshacer.</p>
+            <p>Tome en cuenta que <strong>{{ familia.nombre }}</strong> puede tener progresos guardados. Si elimina la familia, eliminará también los registros de progresos que posee.</p>
+            <br>
+            <strong>¿Está segudo que desea continuar?</strong>
+            <br>
+            <!-- PONER EL FORM AQUI DENTRO PLOXITO  -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="default-block">
+                    <div class="modify-block">
+                        <button type="submit" class="btn-delete">&#128128; Eliminar</button>
+                        <a href="{% url 'housing:communities' %}" class="btn-edit">
+                            <span class="text">&#9940; Cancelar</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- Block javascript -->
+{% block javascript %}
+{% endblock %}

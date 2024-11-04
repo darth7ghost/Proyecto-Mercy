@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>MERCY CORPS</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'about' %}">Acerca de...</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="location-block">
+        <div class="location-column">
+            <div id="location-text">
+                <h1>Ubícanos</h1>
+            </div>
+            <br>
+            <div class="location-info">
+                <strong>Mercy Corps:</strong>
+                <p>Mercy Corps está trabajando en Guatemala desde el año 2001, implementando diferentes proyectos de desarrollo rural, prevención de violencia, resolución y transformación de conflictos, respondiendo a desastres y crisis en las áreas más vulnerables del país.
+                    A través de nuestros programas de desarrollo, lideramos iniciativas que han tenido impactos positivos en las poblaciones que más lo necesitan, generando desarrollo y brindando esperanza a las familias más vulnerables.</p>
+                <br/>
+                <strong>Dirección:</strong>
+                <p>3 Calle 2-24, zona 2, Cobán, Alta Verapaz, Guatemala.</p>
+                <br/>
+                <strong>Teléfono:</strong>
+                <p>+502 7793-0810</p>
+            </div>
+        </div>
+        <div class="maps-column">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d961.3208105387677!2d-90.37457975556974!3d15.469189449575008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858a417a5e6ad325%3A0xcfa3833829f41862!2sMercy%20Corps%20Guatemala!5e0!3m2!1ses!2sgt!4v1723438318989!5m2!1ses!2sgt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- Block javascript -->
+{% block javascript %}
+{% endblock %}

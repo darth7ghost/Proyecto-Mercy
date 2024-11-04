@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Progresos de familia</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a class="active" href="{% url 'inicio' %}">Inicio</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progress' %}">Comunidades</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:comunidad_detail' pk=community_pk %}">Representantes de familia</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="{% url 'housing:progreso_vivienda' community_pk=community_pk representante_id=representante_id %}">Progresos</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="default-block">
+    <div class="default-content-block">
+        <h2>Acciones con progresos</h2>
+        <a href="{% url 'housing:agregar_progreso' community_pk=community_pk representante_id=representante_id %}" class="btn-new">
+            <span class="text">&#128221; Nuevo progreso</span>
+        </a>
+    </div>
+</div>
+<div class="default-block">
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Progresos de la familia: {{ familia.nombre }}</h3>              
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Registro.</th>
+                        <th>Fecha</th>
+                        <th>Progreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for progreso in progresos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><a href="{% url 'housing:detalle_progreso' community_pk=community_pk representante_id=representante_id pk=progreso.pk %}">{{ progreso.fecha_registro }}</a></td>
+                        <td>{{ progreso.promedio_progreso }}%</td>
+                        <td class="item-actions">
+                            <a href="{% url 'housing:detalle_progreso' community_pk=community_pk representante_id=representante_id pk=progreso.pk %}"><button class="status completed">Ver &#128200;</button></a>
+                            <a href="{% url 'housing:editar_progreso' community_pk=community_pk representante_id=representante_id pk=progreso.pk %}"><button class="status process">&#128221;</button></a>
+                            <a href="{% url 'housing:eliminar_progreso' community_pk=community_pk representante_id=representante_id pk=progreso.pk %}"><button class="status delete">&#9940;</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
